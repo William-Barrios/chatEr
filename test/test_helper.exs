@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(ChatEr.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Chat.Repo, :manual)

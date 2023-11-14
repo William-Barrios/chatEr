@@ -1,4 +1,5 @@
-@import "tailwindcss/base";
+@import "tailwindcss/base"; /*estas tres importan el estilo desde un 
+framework de CSS, lo que facilita la creacion de la interfaz web*/
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 

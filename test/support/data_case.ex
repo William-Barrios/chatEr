@@ -1,4 +1,4 @@
-defmodule ChatEr.DataCase do
+defmodule Chat.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule ChatEr.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ChatEr.DataCase, async: true`, although
+  by setting `use Chat.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,17 @@ defmodule ChatEr.DataCase do
 
   using do
     quote do
-      alias ChatEr.Repo
+      alias Chat.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import ChatEr.DataCase
+      import Chat.DataCase
     end
   end
 
   setup tags do
-    ChatEr.DataCase.setup_sandbox(tags)
+    Chat.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -36,14 +36,14 @@ defmodule ChatEr.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(ChatEr.Repo, shared: not tags[:async])
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Chat.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
   end
 
   @doc """
   A helper that transforms changeset errors into a map of messages.
 
-      assert {:error, changeset} = Accounts.create_user(%{password: "short"})
+      assert {:error, changeset} = Accounts.create_person(%{password: "short"})
       assert "password is too short" in errors_on(changeset).password
       assert %{password: ["password is too short"]} = errors_on(changeset)
 

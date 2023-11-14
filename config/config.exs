@@ -7,33 +7,22 @@
 # General application configuration
 import Config
 
-config :chatEr,
-  ecto_repos: [ChatEr.Repo],
-  generators: [timestamp_type: :utc_datetime]
+config :chat,
+  ecto_repos: [Chat.Repo]
 
 # Configures the endpoint
-config :chatEr, ChatErWeb.Endpoint,
+config :chat, ChatWeb.Endpoint,
   url: [host: "localhost"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [html: ChatErWeb.ErrorHTML, json: ChatErWeb.ErrorJSON],
+    formats: [html: ChatWeb.ErrorHTML, json: ChatWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: ChatEr.PubSub,
-  live_view: [signing_salt: "Os/QYqu5"]
-
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :chatEr, ChatEr.Mailer, adapter: Swoosh.Adapters.Local
+  pubsub_server: Chat.PubSub,
+  live_view: [signing_salt: "lvvIz0Oa"]
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.17.11",
+  version: "0.14.41",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -43,7 +32,7 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.3.2",
+  version: "3.2.4",
   default: [
     args: ~w(
       --config=tailwind.config.js
